@@ -4,7 +4,6 @@ import { Paper } from "@material-ui/core";
 import "./CharacterForm.css";
 import { useHistory } from "react-router-dom";
 import { types } from "../../actions/types";
-import { useLocation } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 
 const initialState = {
@@ -17,9 +16,6 @@ const initialState = {
 const CharacterForm = () => {
   const listCharacter = useSelector((state) => state);
   let history = useHistory();
-  let { search } = useLocation();
-
-  console.log(history);
 
   const dispatch = useDispatch();
 
@@ -29,7 +25,12 @@ const CharacterForm = () => {
 
   const handleEditCharacter = (e) => {
     e.preventDefault();
-    console.log("jalooooooooo");
+    dispatch({
+      type: types.SET_ADD,
+      payload: {...listCharacter.store.info.filter((chrt) =>chrt.id !== character.id ),[character.id] : character} ,
+    });
+    history.push("/Home");
+
   };
 
   const handleCreateCharacter = (e) => {
@@ -39,18 +40,15 @@ const CharacterForm = () => {
 
   useEffect(() => {
     if (toStore !== null) {
-      console.log(character);
       let id = new Date();
 
       const dat = { ...listCharacter.store.info, [id]: toStore };
-      console.log(dat);
+
       dispatch({
         type: types.SET_ADD,
         payload: dat,
       });
       history.push("/Home");
-    } else {
-      console.log("error");
     }
   }, [toStore]);
 
@@ -60,15 +58,14 @@ const CharacterForm = () => {
   useEffect(() => {
     if (history.location.search !== "") {
       const id = history.location.search;
-      const iper = id.split("").splice(0, 4);
-      console.log(iper, id);
       const unicCharacter = listCharacter.store.info.filter(
-        (chrt) => chrt.id === id
+        (chrt) => `?id=${chrt.id}` === id
       );
-      console.log(id);
-      setCharacter({ ...character });
+  
+      setCharacter( unicCharacter[0] );
     }
   }, [history]);
+
   return (
     <form onSubmit={(e) => handleCreateCharacter(e)} className="character_body">
       <Paper elevation={3}>

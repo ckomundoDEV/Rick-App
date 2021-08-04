@@ -11,9 +11,7 @@ export const useGet = (endpoint, initialState = []) => {
 
       setInfo(data);
       setFetching(false);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   }, [endpoint]);
 
   useEffect(() => {

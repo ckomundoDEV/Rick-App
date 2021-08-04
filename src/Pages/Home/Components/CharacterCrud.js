@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -40,11 +40,9 @@ const useStyles = makeStyles({
 export default function CharacterCrud({ data, hanldeDelete, handleCreate }) {
   let { search } = useLocation();
   let query = new URLSearchParams(search);
-  console.log(query);
   let history = useHistory();
 
   const handleEdit = (id) => {
-    console.log(id);
     history.push({ pathname: "/Form", search: `?id=${id}` });
   };
   const classes = useStyles();
