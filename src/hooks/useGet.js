@@ -1,0 +1,24 @@
+import { useState, useEffect, useCallback } from "react";
+
+import { API } from "../API";
+export const useGet = (endpoint, initialState = []) => {
+  const [info, setInfo] = useState(initialState);
+  const [fetching, setFetching] = useState(true);
+
+  const get = useCallback(async () => {
+    try {
+      const { data } = await API.get(endpoint);
+
+      setInfo(data);
+      setFetching(false);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [endpoint]);
+
+  useEffect(() => {
+    get();
+  }, [get]);
+
+  return [info, fetching];
+};

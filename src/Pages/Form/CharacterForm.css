@@ -1,0 +1,31 @@
+.character_body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #313131;
+}
+
+.form_container {
+    display: grid;
+    grid-template-columns: repeat(1, 80%);
+    width: 30vw;
+    justify-content: center;
+    align-content: center;
+    height: 60vh;
+    background-color: #F6F6F6;
+    border-radius: 5px;
+}
+.form_imput {
+    border-radius: 5px;
+    margin-top: 5px;
+   
+
+}
+.form_actions {
+    display: flex;
+    justify-content: space-around;
+    max-height: 20vh;
+    width: 100%;
+    background-color: #D2FE9A ;
+}
