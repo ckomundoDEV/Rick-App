@@ -39,7 +39,6 @@ const useStyles = makeStyles({
 
 export default function CharacterCrud({ data, hanldeDelete, handleCreate }) {
   let { search } = useLocation();
-  let query = new URLSearchParams(search);
   let history = useHistory();
 
   const handleEdit = (id) => {

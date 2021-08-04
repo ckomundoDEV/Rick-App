@@ -25,9 +25,11 @@ const CharacterForm = () => {
 
   const handleEditCharacter = (e) => {
     e.preventDefault();
+    const inf = listCharacter.store.info
+    const adapId = inf && Object.values(inf);
     dispatch({
       type: types.SET_ADD,
-      payload: {...listCharacter.store.info.filter((chrt) =>chrt.id !== character.id ),[character.id] : character} ,
+      payload: {...adapId.filter((chrt) =>chrt.id !== character.id ),[character.id] : character} ,
     });
     history.push("/Home");
 
@@ -40,10 +42,9 @@ const CharacterForm = () => {
 
   useEffect(() => {
     if (toStore !== null) {
-      let id = new Date();
-
-      const dat = { ...listCharacter.store.info, [id]: toStore };
-
+      const inf = listCharacter.store.info
+      const adapId = inf && Object.values(inf);
+      const dat = { ...inf, [adapId]: toStore };
       dispatch({
         type: types.SET_ADD,
         payload: dat,
@@ -58,7 +59,10 @@ const CharacterForm = () => {
   useEffect(() => {
     if (history.location.search !== "") {
       const id = history.location.search;
-      const unicCharacter = listCharacter.store.info.filter(
+      const inf = listCharacter.store.info
+      const adapId = inf && Object.values(inf);
+
+      const unicCharacter = adapId.filter(
         (chrt) => `?id=${chrt.id}` === id
       );
   
