@@ -62,9 +62,11 @@ const CharacterForm = () => {
       const id = history.location.search;
       const iper = id.split("").splice(0, 4);
       console.log(iper, id);
-      const unicCharacter = listCharacter.store.info.filter((chrt) => chrt.id === id )
+      const unicCharacter = listCharacter.store.info.filter(
+        (chrt) => chrt.id === id
+      );
       console.log(id);
-      setCharacter({ ...character, })
+      setCharacter({ ...character });
     }
   }, [history]);
   return (
@@ -89,7 +91,6 @@ const CharacterForm = () => {
                 onChange={handleChange}
                 fullWidth
                 value={character.status}
-
                 id="status"
                 name="age"
                 inputProps={{ "aria-label": "age" }}
@@ -126,7 +127,6 @@ const CharacterForm = () => {
               <TextField
                 margin="dense"
                 value={character?.location.name}
-
                 onChange={(e) =>
                   setCharacter({
                     ...character,

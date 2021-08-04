@@ -1,13 +1,10 @@
 import { types } from "../actions/types";
 
 export const initialState = {
-    info:[
-
-
-    ]
+  info: [],
 };
 
-export const characterReducer = (state = initialState, {type, payload}) => {
+export const characterReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case types.SET_ADD:
       return {
@@ -19,11 +16,11 @@ export const characterReducer = (state = initialState, {type, payload}) => {
         ...state,
         info: payload,
       };
-      case types.SET_EDIT:
-        return{
-            ...state,
-            info: state.info.filter((chrt) => chrt.id !== payload)
-        };
+    case types.SET_EDIT:
+      return {
+        ...state,
+        info: state.info.filter((chrt) => chrt.id !== payload),
+      };
     default:
       return state;
   }
