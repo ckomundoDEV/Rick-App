@@ -25,14 +25,16 @@ const CharacterForm = () => {
 
   const handleEditCharacter = (e) => {
     e.preventDefault();
-    const inf = listCharacter.store.info
+    const inf = listCharacter.store.info;
     const adapId = inf && Object.values(inf);
     dispatch({
       type: types.SET_ADD,
-      payload: {...adapId.filter((chrt) =>chrt.id !== character.id ),[character.id] : character} ,
+      payload: {
+        ...adapId.filter((chrt) => chrt.id !== character.id),
+        [character.id]: character,
+      },
     });
     history.push("/Home");
-
   };
 
   const handleCreateCharacter = (e) => {
@@ -42,7 +44,7 @@ const CharacterForm = () => {
 
   useEffect(() => {
     if (toStore !== null) {
-      const inf = listCharacter.store.info
+      const inf = listCharacter.store.info;
       const adapId = inf && Object.values(inf);
       const dat = { ...inf, [adapId]: toStore };
       dispatch({
@@ -51,7 +53,7 @@ const CharacterForm = () => {
       });
       history.push("/Home");
     }
-  }, [toStore]);
+  }, [dispatch, history, listCharacter.store.info , toStore]);
 
   const handleChange = (e) => {
     setCharacter({ ...character, [e.target.id]: e.target.value });
@@ -59,16 +61,14 @@ const CharacterForm = () => {
   useEffect(() => {
     if (history.location.search !== "") {
       const id = history.location.search;
-      const inf = listCharacter.store.info
+      const inf = listCharacter.store.info;
       const adapId = inf && Object.values(inf);
 
-      const unicCharacter = adapId.filter(
-        (chrt) => `?id=${chrt.id}` === id
-      );
-  
-      setCharacter( unicCharacter[0] );
+      const unicCharacter = adapId.filter((chrt) => `?id=${chrt.id}` === id);
+
+      setCharacter(unicCharacter[0]);
     }
-  }, [history]);
+  }, [history, listCharacter.store.info]);
 
   return (
     <form onSubmit={(e) => handleCreateCharacter(e)} className="character_body">

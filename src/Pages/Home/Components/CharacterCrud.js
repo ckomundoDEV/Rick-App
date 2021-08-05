@@ -11,7 +11,6 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { useLocation } from "react-router";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -37,8 +36,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CharacterCrud({ data, hanldeDelete, handleCreate }) {
-  let { search } = useLocation();
+export default function CharacterCrud({ data, hanldeDelete }) {
+
   let history = useHistory();
 
   const handleEdit = (id) => {

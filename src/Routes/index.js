@@ -8,7 +8,7 @@ import Home from "../Pages/Home/Home";
 import CharacterForm from "../Pages/Form/CharacterForm";
 
 const Routes = () => {
-  const [characters, fetching] = useGet("character");
+  const [characters] = useGet("character");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,6 +16,7 @@ const Routes = () => {
       type: types.SET_ADD,
       payload: characters.results,
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characters]);
   return (
     <>
