@@ -16,7 +16,7 @@ const Routes = () => {
       type: types.SET_ADD,
       payload: characters.results,
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characters]);
   return (
     <>
